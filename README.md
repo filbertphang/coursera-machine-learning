@@ -1,6 +1,10 @@
 # coursera-machine-learning
 ##### My attempt at Andrew's Ng Machine Learning course on Coursera.
 
+## Exercises
+1. **Linear Regression**: Completed on 14 September 2018
+
+
 ## Week 1
 ### 4 Sep 2018
 #### Introduction
@@ -85,3 +89,22 @@
 * Decision Boundary
   * Boundary between positive and negative result. Basically the line containing values of **x<sub>1</sub>, x<sub>2</sub>, ...** that yield **h(x) = 0.5**
   * Can be linear, can be polynomial, can be whatever your heart desires
+
+### 11 Sep 2018
+#### Logistic Regression: Model
+* Cost Function
+  * Define **J** = (1/m) * sum to m of **Cost(h,y)**
+  * When y = 1, set cost to be -log(h(x))
+  * When y = 0, set cost to be -log(1-h(x))
+  * This is so that cost is 0 when h(x) = y (1 or 0 respectively) and cost = infinity when h(x) != y (0 or 1 respectively).
+* Simplified Cost Function & Gradient Descent
+  * **Cost** (not **J**) = -y log(h) - (1-y) log (1 - h)
+  * Can sub **cost** into **J** for new simplified cost function
+  * Gradient descent form is identical to that of linear regression
+* Advanced Optimization
+  * Basically there are other algorithms besides gradient descent to find **θ** (eg: conjugate gradient, BFGS, L-BFGS, etc)
+* Multiclass Classification
+  * Classifying between multiple classes (y = 1, 2, 3 ...)
+  * One vs All: classify for y = 1 vs y = not 1, then y = 2 vs y = not 2, ... to y = n vs y = not n
+  * Use the classifier to predict the probability that y = i for class i (for all n classes)
+  *  Final prediction = argmax(all the probabilities predicted)
