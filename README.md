@@ -108,3 +108,23 @@
   * One vs All: classify for y = 1 vs y = not 1, then y = 2 vs y = not 2, ... to y = n vs y = not n
   * Use the classifier to predict the probability that y = i for class i (for all n classes)
   *  Final prediction = argmax(all the probabilities predicted)
+
+### 15 Sep 2018
+#### Regularization
+* The Problem of Overfitting
+  * In regression problems, the hypothesis may fit the training set very well but be unable to generalize well to other problems (especially for higher-order polynomial functions that can weave through all data points)
+  * This problem is called overfitting and introducing regularization can help to address this problem
+  * Picking features that have more weight in deciding the outcome can also help reduce overfitting
+* Cost Function
+  * In **J**, introduce another term: ... + **λ** (sum to n of **θ**<sub>j</sub><sup>2</sup>)
+  * This term is the regularization parameter and helps to prevent large values of **θ** (which is normally associated with overfitting and weird graphs)
+  * **λ** must be set carefully: overly large **λ** can cause underfitting cause the **θ** values will be very small and negligible
+* Regularized Linear Regression
+  * In gradient descent, perform the update for **θ**<sub>0</sub> individually (cause it doesn't have a regularization term)
+  * The partial derivative of the cost function is the same as before, but with an additional term: ... + (**λ**/m) **θ**<sub>j</sub>
+  * Can also work for normal equation. Let the matrix A be the identity matrix EXCEPT that A(1,1) = 0 (instead of 1)
+  * Regularized Normal Equation: **θ** = (**X<sup>T</sup>X** + **λA**)<sup>-1</sup> **X<sup>T</sup>y**
+  * It can be proven that the matrix (**X<sup>T</sup>X** + **λA**) is invertible
+* Regularized Logistic Regression
+  * The partial derivative of the cost function is the same as before, but with an additional term: ... + (**λ**/m)
+  * Note that partial derivative is not identical to that of linear regression as h(x) is different. But the rest is the same.
