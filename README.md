@@ -3,7 +3,7 @@
 
 ## Exercises
 1. **Linear Regression**: Completed on 14 September 2018
-
+2. **Logistic Regression**: Completed on 23 September 2018
 
 ## Week 1
 ### 4 Sep 2018
