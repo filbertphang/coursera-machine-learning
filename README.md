@@ -128,3 +128,34 @@
 * Regularized Logistic Regression
   * The partial derivative of the cost function is the same as before, but with an additional term: ... + (**λ**/m)
   * Note that partial derivative is not identical to that of linear regression as h(x) is different. But the rest is the same.
+
+## Week 4
+### 26 Sep 2018
+#### Neural Networks: Motivation and Representation
+* Motivations
+  * Neural networks allow us to model complex non-linear hypotheses
+  * Artificial neural networks were motivated by the way the neurons in the human brain work
+* Model Representation
+  * Represent the NN as a series of nodes and edges
+  * Edges = weights, denoted by Θ. Θ<sup> j</sup> refers to weights between layers j and j+1.
+    * If network has s<sub>j</sub> nodes in layer j and s<sub>j+1</sub> nodes in layer j+1
+    * Size of Θ<sup> j</sup> = s<sub>j+1</sub> x (s<sub>j</sub> + 1)
+    * +1 comes from bias node x<sub>0</sub>
+  * First layer = input layer, all the nodes corresponds to the features of the dataset
+  * Hidden layer = layers in between, consists of nodes: a<sub>i</sub><sup>j</sup> refers to the i<sup>th</sup> node in layer j
+    * Define z<sup> j</sup> = Θ<sup> j-1</sup> a<sup> j-1</sup>
+    * Express a<sup> j</sup> = g(z<sup> j</sup>), where g is your **activation function**.
+    * Activation function can vary between layers. Commonly used are ReLU (rectified linear unit) and Sigmoid (similar to logistic regression)
+  * Last layer = output layer, outputs the hypothesis of the NN
+
+### 27 September 2018
+#### Neural Networks: Applications
+* Examples & Intuition
+  * Demonstrated the idea that neural networks can be used to model complex non-linear hypothesis (eg logic gates)
+  * Idea is that the various layers in a NN can compute different functions or generate its own features, then pass it into later layers for better classification
+  * Eg: xnor gate can be made by combining and, or, and nor gates
+    * Various logic gates can be implemented by tuning the weights of the input nodes
+  * More complex applications of NN are with Yann LeCun's MNIST data set for handwriting recognition
+* Multiclass Classification
+  * Similar to multiclass logistic regression: use the one-vs-all method
+  * Have as many output nodes as you do classes
