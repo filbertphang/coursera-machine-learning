@@ -4,6 +4,8 @@
 ## Exercises
 1. **Linear Regression**: Completed on 14 September 2018
 2. **Logistic Regression**: Completed on 23 September 2018
+3. **Multi-class Classification and Neural Networks**: Completed on 27 September 2018
+4. **Neural Networks Learning**: Completed on 29 September 2018
 
 ## Week 1
 ### 4 Sep 2018
@@ -159,3 +161,51 @@
 * Multiclass Classification
   * Similar to multiclass logistic regression: use the one-vs-all method
   * Have as many output nodes as you do classes
+
+## Week 5
+### 28 September 2018
+#### Neural Networks: Cost Function & Backpropagation
+* Cost Function
+  * Similar to cost function for logistic regression, except that you sum up the costs from all K output nodes
+  * For regularization parameter, sum all the individual Θ in the entire network.
+* Backpropagation
+  * Assume we have *L* layers. *i* refers to the *i*th training example, *l* refers to the *l*th layer, and *j* refers to the *j*th node in that layer.
+  * Let δ<sub>j</sub><sup>l</sup> be the "error" of the *j*th node in layer *l*
+  * For each training example.  
+    * First forward propagate to find all the values of a<sup> l</sup>
+    * Set δ<sup>L</sup> = a<sup>L</sup> - y<sup> i</sup>
+    * Compute δ in previous layers by using
+      δ<sup>l</sup> = [(Θ<sup> l</sup>)<sup>T</sup> δ<sup> l+1</sup>] \* g'(z<sup> l</sup>), where g'(z<sup> l</sup>) = a<sup> l</sup> .\* (1 - a<sup> l</sup>)
+    * Set Δ<sup> l</sup> := Δ<sup> l</sup> + δ<sup> l+1</sup> * (a<sup> l</sup>)<sup> T</sup>.
+      * Δ<sup> l</sup> is the same size as Θ<sup> l</sup>. It accumulates the errors (delta) across all training examples.
+    * Partial derivative for each Θ, D<sup> l</sup> = (1/m) (Δ<sup> l</sup> + λΘ<sup> l</sup>)
+* Backpropagation Intuition
+  * Idea is that instead of starting with x and propagating forward to find h(x), we start from the output nodes then work backwards to find the δ of nodes in the previous layers
+
+### 29 September 2018
+#### Neural Networks: In Practice
+* Unrolling Parameters
+  * Parameter matrices Θ<sup> l</sup> and D<sup> l</sup> are not vectors and are unsuitable for use with functions like fminunc
+  * Should "unroll" parameters: combine all the Θ matrices into one very very long vector. Do the same thing for all the D matrices.
+  * Unroll before passing into optimization function (at the very end). Basically can compute Θ and D as matrices before unrolling them.
+  * Can convert between vector and matrix form by reshaping.
+* Gradient Checking
+  * Estimate gradient of J(Θ) by calculating (J(Θ + ε) - J(Θ - ε)) / 2ε
+  * Use the estimated gradient to see if the partial derivatives obtained by backpropagation are correct (both values should be approximately equal)
+  * Only use gradient checking for debugging. Do NOT implement it for training b/c it will slow down your code by a lot
+* Random Initialization
+  * Zero initialization does not work b/c the activation values of all nodes in the same layer will always be equal to each other
+  * Symmetry breaking: set each Θ to a random value in [-ε,ε] to prevent the problem of zero initialization
+* Putting it Together
+  * Step 1: Select network architecture (number of hidden layers, number of nodes in each hidden layer)
+    * Input nodes already defined by number of features, output nodes already defined by number of classes (to classify between)
+  * Step 2: Running the neural network
+    * Randomly initialize weights
+    * Loop through all training examples:
+      * Forward prop to get h<sub>Θ</sub>(x) for any x<sup> i</sup>
+      * Compute J(Θ)
+      * Backprop to get values of Δ
+    * Use Δ values to find partial derivatives of J(Θ)
+  * Step 3: Training the neural network
+    * Use gradient checking to ensure that partial derivative values from backprop is accurate
+    * Use gradient descent / other optimization functions to minimize J(Θ) by changing Θ
