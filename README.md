@@ -1,11 +1,12 @@
 # coursera-machine-learning
-##### My attempt at Andrew's Ng Machine Learning course on Coursera.
+My attempt at Andrew's Ng Machine Learning course on Coursera.
 
 ## Exercises
 1. **Linear Regression**: Completed on 14 September 2018
 2. **Logistic Regression**: Completed on 23 September 2018
 3. **Multi-class Classification and Neural Networks**: Completed on 27 September 2018
 4. **Neural Networks Learning**: Completed on 29 September 2018
+5. **Regularized Linear Regression and Bias v.s. Variance**: Completed on 17 October 2018
 
 ## Week 1
 ### 4 Sep 2018
